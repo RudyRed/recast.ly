@@ -1,17 +1,27 @@
-var searchYouTube = (options, callback) => {
+window.firstLoad = true;
+var searchYouTube = ({max, key, query}, context) => {
   // TODO
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',
     type: 'GET',
     data: {
-      maxResults: options.max,
-      key: options.key,
+      maxResults: max,
+      key: key,
       part: 'snippet',
-      q: options.query,
+      q: query,
       type: 'video'
     },
     success: function (data) {
       var dataBlob = data;
+      window.APIdata = data;
+      if (!window.firstLoad) {
+
+      }
+
+      if (window.firstLoad) {
+        ReactDOM.render(<App videoData={dataBlob.items}/>, document.getElementById('app'));
+        window.firstLoad = false;
+      }
       console.log('datablob called: ', dataBlob);
     },
     error: function (data) {
@@ -21,7 +31,7 @@ var searchYouTube = (options, callback) => {
 };
 
 window.searchYouTube = searchYouTube;
-
+// window.youtubeSearchData = window.searchYouTube({max: 5, query: 'hockey', key: window.YOUTUBE_API_KEY})
 
 // ('GET',
 //                 '/youtube/v3/search',
@@ -29,3 +39,4 @@ window.searchYouTube = searchYouTube;
 //                  'part': 'snippet',
 //                  'q': 'hockey',
 
+ 

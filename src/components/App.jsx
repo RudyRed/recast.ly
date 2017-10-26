@@ -2,7 +2,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideo: 0
+      currentVideo: 0,
+      videoCollection: window.StartingData
     };
   }
   
@@ -11,15 +12,15 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <Search appState={this}/>
           </div>
         </nav>
         <div className="row">
           <div className="col-md-7" id="VideoPlayer">
-            <VideoPlayer videos={this.props.videoData[this.state.currentVideo]} appState={this}/>
+            <VideoPlayer video={this.props.videoData[this.state.currentVideo]} appState={this}/>
           </div>
           <div className="col-md-5">
-            <VideoList video={this.props.videoData} appState={this}/>
+            <VideoList videos={this.props.videoData} appState={this}/>
           </div>
         </div>
       </div>
@@ -27,8 +28,9 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App videoData={window.exampleVideoData}/>, document.getElementById('app'));
+window.StartingData = window.searchYouTube({max: 5, query: 'hockey', key: window.YOUTUBE_API_KEY});
 
+// ReactDOM.render(<App videoData={window.exampleVideoData.items}/>, document.getElementById('app'));
 
 
 
