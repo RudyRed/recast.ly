@@ -3,7 +3,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentVideo: 0,
-      videoCollection: window.StartingData
+      videoCollection: this.props.videoData
     };
   }
   
@@ -17,10 +17,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7" id="VideoPlayer">
-            <VideoPlayer video={this.props.videoData[this.state.currentVideo]} appState={this}/>
+            <VideoPlayer video={this.state.videoCollection[this.state.currentVideo]} appState={this}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.props.videoData} appState={this}/>
+            <VideoList videos={this.state.videoCollection} appState={this}/>
           </div>
         </div>
       </div>
@@ -28,38 +28,10 @@ class App extends React.Component {
   }
 }
 
-window.StartingData = window.searchYouTube({max: 5, query: 'hockey', key: window.YOUTUBE_API_KEY});
+window.StartingData = window.searchYouTube({max: 5, query: 'Sidney Crosby Golden Goal', key: window.YOUTUBE_API_KEY});
 
-// ReactDOM.render(<App videoData={window.exampleVideoData.items}/>, document.getElementById('app'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//lifecycle hooks
+//decouple collections 
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined

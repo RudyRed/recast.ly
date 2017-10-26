@@ -13,16 +13,13 @@ var searchYouTube = ({max, key, query}, context) => {
     },
     success: function (data) {
       var dataBlob = data;
-      window.APIdata = data;
       if (!window.firstLoad) {
-
+        context.setState({videoCollection: dataBlob.items});
       }
-
       if (window.firstLoad) {
         ReactDOM.render(<App videoData={dataBlob.items}/>, document.getElementById('app'));
         window.firstLoad = false;
       }
-      console.log('datablob called: ', dataBlob);
     },
     error: function (data) {
       console.error('backcats: Failed to send message', data);
@@ -31,12 +28,3 @@ var searchYouTube = ({max, key, query}, context) => {
 };
 
 window.searchYouTube = searchYouTube;
-// window.youtubeSearchData = window.searchYouTube({max: 5, query: 'hockey', key: window.YOUTUBE_API_KEY})
-
-// ('GET',
-//                 '/youtube/v3/search',
-//                 {'maxResults': '5',
-//                  'part': 'snippet',
-//                  'q': 'hockey',
-
- 
