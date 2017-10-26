@@ -16,10 +16,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7" id="VideoPlayer">
-            <VideoPlayer videoData={this.props.videoData[this.state.currentVideo]} appState={this.state}/>
+            <VideoPlayer videos={this.props.videoData[this.state.currentVideo]} appState={this}/>
           </div>
           <div className="col-md-5">
-            <VideoList videoData={this.props.videoData} appState={this.state}/>
+            <VideoList videoData={this.props.videoData} appState={this}/>
           </div>
         </div>
       </div>

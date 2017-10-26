@@ -1,8 +1,8 @@
 var VideoList = (props) => (
   <div className="video-list">
-    {props.videoData.map((video, index) => 
-      <VideoListEntry videoData={video} appState={props.appState} index={index}/>
-      )}
+    {props.videos.map((video, index) => 
+      <VideoListEntry video={video} appState={props.appState} index={index}/>
+    )}
   </div>
 );
 
